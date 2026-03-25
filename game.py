@@ -39,7 +39,7 @@ class SnakeGameAI:
         self.display = pygame.display.set_mode((self.w, self.h))
         pygame.display.set_caption('Snake')
         self.clock = pygame.time.Clock()
-        self.reset
+        self.reset()
         # init game state
     def reset(self):
         self.direction = Direction.RIGHT
@@ -147,4 +147,12 @@ class SnakeGameAI:
             y -= BLOCK_SIZE #if we go up y decreases
             
         self.head = Point(x, y)
-            
+if __name__ == "__main__":
+    game = SnakeGameAI()
+
+    while True:
+        reward, game_over, score = game.play_step([1,0,0])
+
+        if game_over:
+            print("Game Over, Score:", score)
+            game.reset()
